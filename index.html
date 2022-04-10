@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Ruirui - Lots of love</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="circle1"><div id="overlay1"></div></div>
+    <div class="circle2"><div id="overlay2"></div></div>
+
+    <div class="container">
+        <button id="btn">Music</button>
+        <div class="card">
+            <div class="content">
+                <h3>HAPPY BIRTHDAY RUIRUI</h3>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="my-canvas"></canvas>
+
+    <audio controls id="audio" hidden loop>
+        <source src="src/music.mp3" type="audio/mpeg">
+        <p>Your browser does not support this audio element</p>
+    </audio>
+
+
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script src="index.min.js"></script>
+    <script type="text/javascript">
+        VanillaTilt.init(document.querySelectorAll(".card"), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 1,
+        });
+
+
+        //for confetti and music
+        let btn = document.querySelector('#btn')
+        let confe = document.querySelector('#my-canvas')
+        var audio = document.getElementById('audio');
+        btn.onclick = function(){
+            if(btn.innerHTML === 'Music'){
+                confe.classList.add('active');
+                audio.play();
+                btn.innerHTML = 'Pause';
+            }else if(btn.innerHTML === 'Pause'){
+                confe.classList.remove('active');
+                audio.pause();
+                btn.innerHTML = 'Music';
+            }     
+        }
+       
+        var confettiSettings = { target: 'my-canvas' };
+        var confetti = new ConfettiGenerator(confettiSettings);
+        confetti.render();
+
+    </script>
+</body>
+</html>
